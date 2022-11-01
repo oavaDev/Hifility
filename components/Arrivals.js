@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Text } from '@nextui-org/react';
 const Arrivals = () => {
   return (
     <div className='Arrivals__body'>
@@ -8,8 +9,8 @@ const Arrivals = () => {
           width='512'
           height='512'
           style={{
-            width: '512px',
-            height: '212px',
+            width: '100%',
+            height: '100%',
             minWidth: '15rem',
             minHeight: '1rem',
           }}
@@ -19,7 +20,16 @@ const Arrivals = () => {
       </div>
       <div className='Arrivals__body-content'>
         <div>
-          <p>New Arrival</p>
+          <Text
+            h1
+            size={60}
+            css={{
+              textGradient: '60deg,black, orange',
+            }}
+            weight='bold'
+          >
+            New Arrival
+          </Text>
         </div>
         <div>
           <span>Coming on 2023</span>

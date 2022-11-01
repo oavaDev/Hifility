@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Button } from '@nextui-org/react';
+import { Text } from '@nextui-org/react';
 const Offer = () => {
   return (
     <div className='Offer__body'>
@@ -20,7 +21,16 @@ const Offer = () => {
       </div>
       <div className='Offer__body-content'>
         <div>
-          <p>Sign up now and get a 5% discount on your next product</p>
+          <Text
+            h1
+            size={30}
+            css={{
+              textGradient: '45deg, $yellow600 -20%, $red600 100%',
+            }}
+            weight='bold'
+          >
+            Sign up now and get a 5% discount on your next product
+          </Text>
         </div>
         <div>
           <Button auto>Sign up here</Button>

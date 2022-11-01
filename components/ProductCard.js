@@ -1,7 +1,8 @@
 import { Image } from '@nextui-org/react';
 import React from 'react';
-import CartIcon from './CartIcon';
-const ProductCard = () => {
+import { Text } from '@nextui-org/react';
+
+const ProductCard = ({ image, brand, name, price }) => {
   return (
     <div className='ProductCard__body'>
       <div className='ProductCard__body-image'>
@@ -15,24 +16,44 @@ const ProductCard = () => {
             minWidth: '15rem',
             minHeight: '1rem',
           }}
-          src='http://cdn.shopify.com/s/files/1/0040/7201/3924/products/7HZTimeless-2_3d709844-2bea-4125-938e-61febf3e320f_300x.jpg?v=1635258287'
+          src={`${image}`}
         />
       </div>
       <div className='ProductCard__body-content'>
         <div>
-          <p>7HZ</p>
+          <Text
+            h1
+            size={40}
+            css={{
+              textAlign: 'center',
+              textGradient: '0deg, grey 50%, black',
+            }}
+            weight='light'
+          >
+            {brand}
+          </Text>
         </div>
         <div>
-          <span>Timeless</span>
+          <Text
+            h1
+            size={30}
+            css={{
+              textAlign: 'center',
+              textGradient: '180deg, grey 50%, black',
+            }}
+            weight='bold'
+          >
+            {name}
+          </Text>
         </div>
 
         <div className='ProductCard__body-content-shop'>
           <div>
-            <span>120usd</span>
+            <Text h1 size={20} weight='light'>
+              ${price} USD
+            </Text>
           </div>
-          <div>
-            <CartIcon />
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

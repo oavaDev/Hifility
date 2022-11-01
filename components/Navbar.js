@@ -21,10 +21,30 @@ const Nav = () => {
           Company
         </Navbar.Link>
         <Button className='login-button' flat auto as={Link} href='#'>
-          Login
+          <Text
+            h1
+            size={20}
+            css={{
+              margin: 'auto',
+              textGradient: '0deg, grey 50%, black',
+            }}
+            weight='light'
+          >
+            Login
+          </Text>
         </Button>
         <Button className='signup-button' flat auto as={Link} href='#'>
-          Sign Up
+          <Text
+            h1
+            size={20}
+            css={{
+              margin: 'auto',
+              textGradient: '0deg, grey 50%, black',
+            }}
+            weight='light'
+          >
+            Sign Up
+          </Text>
         </Button>
       </Navbar.Content>
       <Navbar.Toggle showIn={'xs'} aria-label='toggle navigation' />

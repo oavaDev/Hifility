@@ -1,0 +1,13 @@
+.ProductContainer-body {
+  margin-top: 5rem;
+}
+.ProductContainer-body p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.ProductContainer-body-products {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(255, 255, 255);
+}

@@ -19,6 +19,8 @@ a {
 @import url('./components/Arrivals.css');
 @import url('./components/Offer.css');
 @import url('./components/ProductCard.css');
+@import url('./components/ProductContainer.css');
+
 /* 
 @media (prefers-color-scheme: dark) {
   html {

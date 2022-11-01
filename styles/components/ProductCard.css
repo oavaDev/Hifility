@@ -5,8 +5,16 @@
   flex-direction: column;
   border-radius: 30px;
   background: #f0f0f0;
+  box-shadow: 28px 28px 57px #c1c1c1, 57px #ffffff;
+  transition: background-color 0.8s ease 0s, box-shadow 0.4s ease 0s;
+}
+.ProductCard__body:hover {
+  background: #1e1e1e;
+
   box-shadow: 28px 28px 57px #c1c1c1, -28px -28px 57px #ffffff;
-  transition: background-color 0.4s ease 0s, box-shadow 0.4s ease 0s;
+}
+.ProductCard__body:hover h1 {
+  color: rgb(142, 142, 142);
 }
 .ProductCard__body-image img {
   border-top-left-radius: 30px;
@@ -18,8 +26,7 @@
   align-items: center;
   justify-content: center;
 }
-.ProductCard__body-content p,
-span {
+.ProductCard__body-content p span {
   margin-top: 1rem;
 }
 .ProductCard__body-content-shop {
