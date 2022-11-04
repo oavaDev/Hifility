@@ -87,6 +87,22 @@ export default function Home() {
         'Ergonomic Design for Stable Wear',
       ],
     },
+    {
+      image:
+        'https://cdn.shopify.com/s/files/1/0040/7201/3924/products/5_99b91698-08fb-4661-815c-47a8e745c894.jpg?v=1629800987',
+      brand: 'KZ',
+      name: 'ZS10 PRO',
+      subTitle:
+        '4BA+1DD 5 Driver in-Ear HiFi Metal Earphones with Stainless Steel Faceplate, 2 Pin Detachable Cable',
+      price: '45.00',
+      description: [
+        'Upgraded 4BA+1DD Hybrid Earphones&Magnetic Dynamic Unit',
+        'Exquisite Craft',
+        'PCB Frequency Dividing Board',
+        'Ergonomic Design & Noise Canceling',
+      ],
+      rating: [20, 3],
+    },
   ];
   return (
     <div className={styles.container}>
@@ -97,7 +113,7 @@ export default function Home() {
       </Head>
       <Nav />
       <main>
-        <section>
+        <section className={styles.curved}>
           <div className={styles.flex}>
             <Arrivals />
             <Offer />
@@ -127,10 +143,13 @@ export default function Home() {
             })}
           </div>
         </section>
-        <section>
-          <div className={styles.flexRow}>
+        <section className={styles.curved2}>
+          <div className={styles.flex}>
             <ProductContainer />
           </div>
+        </section>
+        <section>
+          <div></div>
         </section>
       </main>
     </div>

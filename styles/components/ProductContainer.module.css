@@ -1,0 +1,18 @@
+.ProductContainer__body {
+  margin: 7rem auto;
+  width: 90%;
+}
+.ProductContainer__body p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.ProductContainer__body_products {
+  display: flex;
+  border-radius: 30px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 1rem 1rem;
+
+  background-color: rgb(211, 211, 211);
+}

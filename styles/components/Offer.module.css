@@ -1,52 +1,60 @@
-.Arrivals__body {
+.Offer__body {
   margin: 1rem auto;
   display: flex;
   width: 40%;
   border-radius: 30px;
   background: #f0f0f0;
-  box-shadow: 28px 28px 57px #c1c1c1, -28px -28px 57px #ffffff;
+  box-shadow: 28px 28px 57px #c1c1c1, 48px 28px 57px #ffffff;
   transition: background-color 0.4s ease 0s, box-shadow 0.4s ease 0s;
 }
-.Arrivals__body:hover {
+.Offer__body:hover {
   background: #e2e2e2;
   box-shadow: 28px 28px 57px #c1c1c1, -28px -28px 57px #ffffff;
 }
-.Arrivals__body-image {
+.signup_button_orange {
+  background-color: rgb(233, 133, 47);
+  color: rgb(255, 255, 255);
+}
+.Offer__body_image {
   width: 100%;
 }
-.Arrivals__body-content {
+.Offer__body_content {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin: 1rem;
 }
-.Arrivals__body-content p {
-  font-size: 3rem;
+.Offer__body_content p {
+  font-size: 1.5rem;
   margin-bottom: 3rem;
 }
-.Arrivals__body-content span {
-  font-size: 1.5rem;
+.Offer__body_content button {
+  background-color: black;
+  color: aliceblue;
 }
 @media (max-width: 376px) {
-  .Arrivals__body {
+  .Offer__body {
     width: 100%;
     justify-content: center;
   }
-  .Arrivals__body-content p {
-    font-size: 2rem;
+  .Offer__body_image {
+    width: 13rem;
   }
-  .Arrivals__body-content span {
+  .Offer__body_content p {
     font-size: 1.5rem;
+  }
+  .Offer__body_content button {
+    font-size: 0.9rem;
   }
 }
 @media (max-width: 980px) {
-  .Arrivals__body {
-    width: 90%;
+  .Offer__body {
     justify-content: center;
+    width: 90%;
   }
 }
 @media (min-width: 1800px) {
-  .Arrivals__body {
+  .Offer__body {
     width: 30%;
   }
 }

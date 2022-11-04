@@ -1,8 +1,9 @@
-.signup-button {
+.signup_button {
   background-color: black;
   color: aliceblue;
 }
-.login-button {
-  background-color: rgb(242, 242, 242);
+
+.login_button {
+  background-color: rgb(227, 227, 227);
   color: rgb(0, 0, 0);
 }

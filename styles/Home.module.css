@@ -4,6 +4,32 @@
 }
 .flexRow {
   display: flex;
+  margin: 1rem auto;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.curved {
+  position: relative;
+  background: #c5c5c5;
+  padding: 1rem 0;
+  border-bottom-left-radius: 50% 5%;
+  border-bottom-right-radius: 50% 5%;
+}
+.curved2 {
+  position: relative;
+  background: #fefefe;
+}
+
+.curved2::after {
+  content: '';
+  border-top-left-radius: 50% 100%;
+  border-top-right-radius: 50% 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  height: 6%;
 }
 @media (max-width: 980px) {
   .flex {

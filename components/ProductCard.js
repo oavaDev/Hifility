@@ -1,11 +1,11 @@
 import { Image } from '@nextui-org/react';
 import React from 'react';
 import { Text } from '@nextui-org/react';
-
+import styles from '../styles/components/ProductCard.module.css';
 const ProductCard = ({ image, brand, name, price }) => {
   return (
-    <div className='ProductCard__body'>
-      <div className='ProductCard__body-image'>
+    <div className={styles.ProductCard__body}>
+      <div className={styles.ProductCard__body_image}>
         <Image
           alt='img'
           width='500'
@@ -16,19 +16,20 @@ const ProductCard = ({ image, brand, name, price }) => {
             minWidth: '15rem',
             minHeight: '1rem',
           }}
+          loading={'lazy'}
           src={`${image}`}
         />
       </div>
-      <div className='ProductCard__body-content'>
+      <div className={styles.ProductCard__body_content}>
         <div>
           <Text
             h1
             size={40}
+            weight={'light'}
             css={{
               textAlign: 'center',
               textGradient: '0deg, grey 50%, black',
             }}
-            weight='light'
           >
             {brand}
           </Text>
@@ -41,13 +42,13 @@ const ProductCard = ({ image, brand, name, price }) => {
               textAlign: 'center',
               textGradient: '180deg, grey 50%, black',
             }}
-            weight='bold'
+            weight='normal'
           >
             {name}
           </Text>
         </div>
 
-        <div className='ProductCard__body-content-shop'>
+        <div className={styles.ProductCard__body_content_shop}>
           <div>
             <Text h1 size={20} weight='light'>
               ${price} USD

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Text, Link, Button, Spacer } from '@nextui-org/react';
 import Icon from './Icon';
+import styles from '../styles/components/Nav.module.css';
 const Nav = () => {
   const collapseItems = ['Products', 'Company', 'Signup', 'Login'];
   return (
@@ -20,26 +21,26 @@ const Nav = () => {
         <Navbar.Link hideIn='xs' href='#'>
           Company
         </Navbar.Link>
-        <Button className='login-button' flat auto as={Link} href='#'>
+        <Button className={styles.login_button} flat auto as={Link} href='#'>
           <Text
             h1
             size={20}
             css={{
               margin: 'auto',
-              textGradient: '0deg, grey 50%, black',
+              color: 'black',
             }}
             weight='light'
           >
             Login
           </Text>
         </Button>
-        <Button className='signup-button' flat auto as={Link} href='#'>
+        <Button className={styles.signup_button} flat auto as={Link} href='#'>
           <Text
             h1
             size={20}
             css={{
               margin: 'auto',
-              textGradient: '0deg, grey 50%, black',
+              color: 'white',
             }}
             weight='light'
           >

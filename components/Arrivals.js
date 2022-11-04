@@ -1,10 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { Text } from '@nextui-org/react';
+import styles from '../styles/components/Arrivals.module.css';
 const Arrivals = () => {
   return (
-    <div className='Arrivals__body'>
-      <div className='Arrivals__body-image'>
+    <div className={styles.Arrivals__body}>
+      <div className={styles.Arrivals__body_image}>
         <Image
           width='512'
           height='512'
@@ -18,7 +19,7 @@ const Arrivals = () => {
           alt='img'
         />
       </div>
-      <div className='Arrivals__body-content'>
+      <div className={styles.Arrivals__body_content}>
         <div>
           <Text
             h1

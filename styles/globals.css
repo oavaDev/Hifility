@@ -15,11 +15,11 @@ a {
 * {
   box-sizing: border-box;
 }
-@import url('./components/Nav.css');
-@import url('./components/Arrivals.css');
-@import url('./components/Offer.css');
-@import url('./components/ProductCard.css');
-@import url('./components/ProductContainer.css');
+@import url('./components/Nav.module.css');
+@import url('./components/Arrivals.module.css');
+@import url('./components/Offer.module.css');
+@import url('./components/ProductCard.module.css');
+@import url('./components/ProductContainer.module.css');
 
 /* 
 @media (prefers-color-scheme: dark) {

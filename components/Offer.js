@@ -1,11 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import { Button } from '@nextui-org/react';
-import { Text } from '@nextui-org/react';
+import { Text, Link } from '@nextui-org/react';
+import styles from '../styles/components/Offer.module.css';
 const Offer = () => {
   return (
-    <div className='Offer__body'>
-      <div className='Offer__body-image'>
+    <div className={styles.Offer__body}>
+      <div className={styles.Offer__body_image}>
         <Image
           width='500'
           height='500'
@@ -19,7 +20,7 @@ const Offer = () => {
           alt='img'
         />
       </div>
-      <div className='Offer__body-content'>
+      <div className={styles.Offer__body_content}>
         <div>
           <Text
             h1
@@ -33,7 +34,25 @@ const Offer = () => {
           </Text>
         </div>
         <div>
-          <Button auto>Sign up here</Button>
+          <Button
+            className={styles.signup_button_orange}
+            flat
+            auto
+            as={Link}
+            href='#'
+          >
+            <Text
+              h1
+              size={20}
+              css={{
+                margin: 'auto',
+                color: 'white',
+              }}
+              weight='light'
+            >
+              Sign Up
+            </Text>
+          </Button>
         </div>
       </div>
     </div>
