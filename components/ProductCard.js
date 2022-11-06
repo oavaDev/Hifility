@@ -2,6 +2,9 @@ import { Image } from '@nextui-org/react';
 import React from 'react';
 import { Text } from '@nextui-org/react';
 import styles from '../styles/components/ProductCard.module.css';
+import CartIcon from './CartIcon';
+import { Button, Link } from '@nextui-org/react';
+
 const ProductCard = ({ image, brand, name, price }) => {
   return (
     <div className={styles.ProductCard__body}>
@@ -54,7 +57,17 @@ const ProductCard = ({ image, brand, name, price }) => {
               ${price} USD
             </Text>
           </div>
-          <div></div>
+        </div>
+        <div className={styles.cart_button}>
+          <Button
+            ref={selected}
+            className={styles.cart_button_button}
+            flat
+            auto
+            as={Link}
+          >
+            <CartIcon />
+          </Button>
         </div>
       </div>
     </div>

@@ -28,8 +28,8 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: #fff;
-  height: 6%;
+  background: rgb(230, 230, 230);
+  height: 3%;
 }
 @media (max-width: 980px) {
   .flex {
