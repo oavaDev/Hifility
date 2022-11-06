@@ -7,7 +7,6 @@ const ProductContainer = (productData) => {
   const data = productData.productData;
   const { asPath } = useRouter();
 
-  console.log(asPath);
   const data2show = asPath === '/products' ? data : data.slice(6, 12);
   return (
     <>

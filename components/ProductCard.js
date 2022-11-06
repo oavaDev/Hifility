@@ -59,13 +59,7 @@ const ProductCard = ({ image, brand, name, price }) => {
           </div>
         </div>
         <div className={styles.cart_button}>
-          <Button
-            ref={selected}
-            className={styles.cart_button_button}
-            flat
-            auto
-            as={Link}
-          >
+          <Button className={styles.cart_button_button} flat auto as={Link}>
             <CartIcon />
           </Button>
         </div>
