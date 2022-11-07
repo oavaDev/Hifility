@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
@@ -11,35 +11,6 @@ import ProductContainer from '../components/ProductContainer';
 import { Text, Input, Button, Link } from '@nextui-org/react';
 import { useJwt } from 'react-jwt';
 export default function Home({ productData }) {
-  const getFromStorage = (key) => {
-    let token = '';
-    if (typeof window !== 'undefined') {
-      token = localStorage.getItem('hifility');
-    }
-    return token;
-  };
-
-  const user = getFromStorage('hifility');
-  const { isExpired } = useJwt(user);
-  const auth = isExpired;
-  useEffect(() => {
-    if (!auth) {
-      fetch('http://localhost:8080/product/user', {
-        method: 'GET', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    }
-  }, []);
   return (
     <div className={styles.container}>
       <Head>
