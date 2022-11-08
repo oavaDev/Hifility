@@ -24,7 +24,7 @@ const SignUpContainer = () => {
     submitData.password.length < 8 ? setErrorPass(true) : setErrorPass(false);
 
     if (errorEmail === false && errorName === false && errorPass === false) {
-      await fetch('http://localhost:8080/auth/signup', {
+      await fetch('https://hifility.herokuapp.com/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const LoginContainer = () => {
   const [error, setError] = useState(false);
   const [token, setToken] = useState();
   const handleSubmit = async (e) => {
-    await fetch('http://localhost:8080/auth/login', {
+    await fetch('https://hifility.herokuapp.com/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
