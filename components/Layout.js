@@ -4,18 +4,18 @@ import Nav from './Navbar';
 import Footer from './Footer';
 import styles from '../styles/Home.module.css';
 
-const Layout = ({ title, children }) => {
+const Layout = ({ footer, title, children }) => {
   return (
     <>
       <Head>
-        <title>{title ? title + '- Hifility' : 'hifility'}</title>
+        <title>{title ? title + '- Hifility' : 'Hifility'}</title>
         <meta name='description' content='Ecommerce Website' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className={styles.container}>
         <Nav />
         <main>{children}</main>
-        <Footer />
+        {footer ? <Footer /> : <></>}
       </div>
     </>
   );

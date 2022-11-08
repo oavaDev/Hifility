@@ -6,8 +6,10 @@ import ProductContainer from '../components/ProductContainer';
 import { Text, Input, Button, Link } from '@nextui-org/react';
 import Layout from '../components/Layout';
 export default function Home({ productData }) {
+  const quantity = 1;
+  const quantityStock = 30;
   return (
-    <Layout>
+    <Layout footer={true}>
       <section className={styles.curved}>
         <div className={styles.flex}>
           <Arrivals />
@@ -34,6 +36,8 @@ export default function Home({ productData }) {
                 brand={item.brand}
                 image={item.image}
                 price={item.price}
+                quantity={quantity}
+                quantityStock={quantityStock}
               />
             );
           })}

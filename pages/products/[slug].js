@@ -6,17 +6,21 @@ const ProductScreen = ({ productData }) => {
   const { query } = useRouter();
   const { slug } = query;
   const product = productData.data.find((x) => x._id === slug);
-  console.log(product);
+  const quantity = 1;
+  const quantityStock = 20;
   return (
     <Layout>
       <div>
         <FullProductCard
+          id={product.id}
           name={product.name}
           brand={product.brand}
           image={product.image}
           price={product.price}
           description={product.description}
           subtitle={product.subTitle}
+          quantity={quantity}
+          quantityStock={quantityStock}
         />
       </div>
     </Layout>

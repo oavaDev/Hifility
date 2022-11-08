@@ -7,11 +7,19 @@ import { Button, Link } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 import { addToOrder } from '../store/slices/orderSlice';
 import { useDispatch } from 'react-redux';
-const ProductCard = ({ image, brand, name, price, id }) => {
+const ProductCard = ({
+  image,
+  brand,
+  name,
+  price,
+  id,
+  quantity,
+  quantityStock,
+}) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const addOrderHandler = () => {
-    dispatch(addToOrder({ id, name, price }));
+    dispatch(addToOrder({ id, name, brand, price, quantity, quantityStock }));
   };
   return (
     <div className={styles.ProductCard__body}>

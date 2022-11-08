@@ -4,15 +4,23 @@ import { Text } from '@nextui-org/react';
 import styles from '../styles/components/FullProductCard.module.css';
 import CartIcon from './CartIcon';
 import { Button, Link } from '@nextui-org/react';
-
+import { useDispatch } from 'react-redux';
+import { addToOrder } from '../store/slices/orderSlice';
 const FullProductCard = ({
+  id,
   image,
   brand,
   name,
   price,
   subtitle,
   description,
+  quantity,
+  quantityStock,
 }) => {
+  const addOrderHandler = () => {
+    dispatch(addToOrder({ id, name, brand, price, quantity, quantityStock }));
+  };
+  const dispatch = useDispatch();
   return (
     <div className={styles.FullProductCard__body}>
       <div className={styles.FullProductCard__body_image}>
@@ -98,7 +106,12 @@ const FullProductCard = ({
           </div>
         </div>
         <div className={styles.cart_button}>
-          <Button className={styles.cart_button_button} flat auto as={Link}>
+          <Button
+            onClick={addOrderHandler}
+            className={styles.cart_button_button}
+            flat
+            auto
+          >
             <CartIcon />
           </Button>
         </div>

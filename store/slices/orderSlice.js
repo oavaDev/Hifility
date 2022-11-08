@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 const initialState = {
-  items: [],
+  cart: { cartItems: [] },
 };
 
 export const orderSlice = createSlice({
@@ -9,14 +9,23 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {
     addToOrder: (state, action) => {
-      state.items = [...state.items, action.payload];
+      const newItem = action.payload;
+      const existItem = state.cart.cartItems.find(
+        (item) => item.name === newItem.name
+      );
+      const cartItems = existItem
+        ? state.cart.cartItems.map((item) =>
+            item.name === existItem.name ? newItem : item
+          )
+        : [...state.cart.cartItems, newItem];
+      return { ...state, cart: { ...state.cart, cartItems } };
     },
 
     removeFromOrder: (state, action) => {
-      const index = state.items.findIndex(
+      const index = state.cart.cartItems.findIndex(
         (orderItem) => orderItem.id === action.payload.id
       );
-      let newOrder = [...state.items];
+      let newOrder = [...state.cart.cartItems];
       if (index >= 0) {
         //the item exists in order; remove it
         newOrder.splice(index, 1); //(position, number of item to delete)
@@ -25,7 +34,7 @@ export const orderSlice = createSlice({
           `can not remove item(id: ${action.payload.id}) as its not in the order`
         );
       }
-      state.items = newOrder;
+      state.cart.cartItems = newOrder;
     },
     extraReducers: {
       [HYDRATE]: (state, action) => {
@@ -40,9 +49,9 @@ export const orderSlice = createSlice({
 
 export const { addToOrder, removeFromOrder } = orderSlice.actions;
 
-export const selectItems = (state) => state.order.items;
+export const selectItems = (state) => state.order.cart;
 export const selectTotal = (state) =>
-  state.order.items.reduce(
+  state.order.cart.cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );

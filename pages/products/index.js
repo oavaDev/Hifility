@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 const Products = ({ productData }) => {
   return (
     <>
-      <Layout>
+      <Layout footer={true} title={'Products'}>
         <ProductContainer productData={productData.data} />;
       </Layout>
     </>
@@ -13,12 +13,11 @@ const Products = ({ productData }) => {
 
 export default Products;
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps() {
   const productApi = await fetch(`http://localhost:8080/product/show`, {
     method: 'GET',
   });
   const productData = await productApi.json();
-  console.log(ctx);
   return {
     props: {
       productData,

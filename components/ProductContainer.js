@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 const ProductContainer = (productData) => {
   const data = productData.productData;
   const { asPath } = useRouter();
-
+  const quantity = 1;
+  const quantityStock = 20;
   const data2show = asPath === '/products' ? data : data.slice(6, 12);
   return (
     <>
@@ -34,6 +35,8 @@ const ProductContainer = (productData) => {
                 brand={item.brand}
                 image={item.image}
                 price={item.price}
+                quantity={quantity}
+                quantityStock={quantityStock}
               />
             );
           })}
