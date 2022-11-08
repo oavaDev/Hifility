@@ -63,8 +63,8 @@ const Nav = ({ auth }) => {
       </Navbar.Brand>
 
       <Navbar.Content hideIn='xs' enableCursorHighlight variant='underline'>
-        <Navbar.Link hideIn='xs' href='/products'>
-          Products
+        <Navbar.Link hideIn='xs' onClick={() => router.push('/products')}>
+          Products {/**need to change this to a router.push **/}
         </Navbar.Link>
         <Navbar.Link hideIn='xs' href='#'>
           Company
@@ -77,8 +77,7 @@ const Nav = ({ auth }) => {
               className={styles.login_button}
               flat
               auto
-              as={Link}
-              href='/login'
+              onClick={() => router.push('/login')}
             >
               <Text
                 h1
@@ -96,8 +95,7 @@ const Nav = ({ auth }) => {
               className={styles.signup_button}
               flat
               auto
-              as={Link}
-              href='/signup'
+              onClick={() => router.push('/signup')}
             >
               <Text
                 h1

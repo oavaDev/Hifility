@@ -1,13 +1,12 @@
 import React from 'react';
 import ProductContainer from '../../components/ProductContainer';
-import Footer from '../../components/Footer';
-import Nav from '../../components/Navbar';
+import Layout from '../../components/Layout';
 const Products = ({ productData }) => {
   return (
     <>
-      <Nav />
-      <ProductContainer productData={productData.data} />;
-      <Footer />
+      <Layout>
+        <ProductContainer productData={productData.data} />;
+      </Layout>
     </>
   );
 };

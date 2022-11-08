@@ -28,7 +28,8 @@ const ProductContainer = (productData) => {
           {data2show.map((item) => {
             return (
               <ProductCard
-                key={item.name}
+                key={item._id}
+                id={item._id}
                 name={item.name}
                 brand={item.brand}
                 image={item.image}
