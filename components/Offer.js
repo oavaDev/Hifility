@@ -3,7 +3,10 @@ import Image from 'next/image';
 import { Button } from '@nextui-org/react';
 import { Text, Link } from '@nextui-org/react';
 import styles from '../styles/components/Offer.module.css';
+import { useRouter } from 'next/router';
 const Offer = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.Offer__body}>
       <div className={styles.Offer__body_image}>
@@ -36,9 +39,9 @@ const Offer = () => {
         <div>
           <Button
             className={styles.signup_button_orange}
+            onClick={() => router.push('/login')}
             flat
             auto
-            as={Link}
             href='#'
           >
             <Text

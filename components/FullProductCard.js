@@ -1,33 +1,31 @@
 import { Image } from '@nextui-org/react';
 import React from 'react';
 import { Text } from '@nextui-org/react';
-import styles from '../styles/components/ProductCard.module.css';
+import styles from '../styles/components/FullProductCard.module.css';
 import CartIcon from './CartIcon';
 import { Button, Link } from '@nextui-org/react';
-import { useRouter } from 'next/router';
-import { addToOrder } from '../store/slices/orderSlice';
 import { useDispatch } from 'react-redux';
-const ProductCard = ({
+import { addToOrder } from '../store/slices/orderSlice';
+const FullProductCard = ({
+  id,
   image,
   brand,
   name,
   price,
-  id,
+  subtitle,
+  description,
   quantity,
   quantityStock,
 }) => {
-  const router = useRouter();
-  const dispatch = useDispatch();
   const addOrderHandler = () => {
     dispatch(addToOrder({ id, name, brand, price, quantity, quantityStock }));
   };
+  const dispatch = useDispatch();
   return (
-    <div className={styles.ProductCard__body}>
-      <div
-        onClick={() => router.push(`/products/${id}`)}
-        className={styles.ProductCard__body_image}
-      >
+    <div className={styles.FullProductCard__body}>
+      <div className={styles.FullProductCard__body_image}>
         <Image
+          id='image'
           alt='img'
           width='500'
           height='500'
@@ -41,7 +39,8 @@ const ProductCard = ({
           src={`${image}`}
         />
       </div>
-      <div className={styles.ProductCard__body_content}>
+
+      <div className={styles.FullProductCard__body_content}>
         <div>
           <Text
             h1
@@ -68,8 +67,38 @@ const ProductCard = ({
             {name}
           </Text>
         </div>
-
-        <div className={styles.ProductCard__body_content_shop}>
+        <div>
+          <Text
+            h1
+            size={18}
+            weight={'light'}
+            css={{
+              textAlign: 'center',
+              textGradient: '0deg, grey 50%, black',
+            }}
+          >
+            {subtitle}
+          </Text>
+        </div>
+        <div>
+          {description.map((x, i) => {
+            return (
+              <Text
+                key={i}
+                h1
+                size={12}
+                weight={'light'}
+                css={{
+                  textAlign: 'center',
+                  textGradient: '0deg, grey 50%, black',
+                }}
+              >
+                {x}
+              </Text>
+            );
+          })}
+        </div>
+        <div className={styles.FullProductCard__body_content_shop}>
           <div>
             <Text h1 size={20} weight='light'>
               ${price} USD
@@ -82,7 +111,6 @@ const ProductCard = ({
             className={styles.cart_button_button}
             flat
             auto
-            as={Link}
           >
             <CartIcon />
           </Button>
@@ -92,4 +120,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default FullProductCard;

@@ -7,3 +7,15 @@
   background-color: rgb(227, 227, 227);
   color: rgb(0, 0, 0);
 }
+.cart_button_button {
+  background-color: rgb(242, 242, 242);
+}
+
+.cart_button svg {
+  width: 25px;
+  fill: rgb(0, 0, 0);
+  z-index: 2;
+}
+.ProductCard__body_image img {
+  border-radius: 20px;
+}
