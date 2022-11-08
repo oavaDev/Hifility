@@ -23,7 +23,7 @@ const Nav = ({ auth }) => {
   const [data, setData] = useState();
   useEffect(() => {
     if (!isItExpired) {
-      fetch('http://localhost:8080/auth/user', {
+      fetch('https://hifility.herokuapp.com/auth/user', {
         method: 'GET', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
