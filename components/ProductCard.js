@@ -5,8 +5,14 @@ import styles from '../styles/components/ProductCard.module.css';
 import CartIcon from './CartIcon';
 import { Button, Link } from '@nextui-org/react';
 import { useRouter } from 'next/router';
+import { addToOrder } from '../store/slices/orderSlice';
+import { useDispatch } from 'react-redux';
 const ProductCard = ({ image, brand, name, price, id }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const addOrderHandler = () => {
+    dispatch(addToOrder({ id, name, price }));
+  };
   return (
     <div className={styles.ProductCard__body}>
       <div
@@ -63,7 +69,13 @@ const ProductCard = ({ image, brand, name, price, id }) => {
           </div>
         </div>
         <div className={styles.cart_button}>
-          <Button className={styles.cart_button_button} flat auto as={Link}>
+          <Button
+            onClick={addOrderHandler}
+            className={styles.cart_button_button}
+            flat
+            auto
+            as={Link}
+          >
             <CartIcon />
           </Button>
         </div>

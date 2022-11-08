@@ -13,10 +13,11 @@ import {
   Spacer,
   User,
 } from '@nextui-org/react';
-
+import { useSelector } from 'react-redux';
 import { useJwt } from 'react-jwt';
-
+import { selectItems } from '../store/slices/orderSlice';
 const Nav = ({ auth }) => {
+  const numberTotal = useSelector(selectItems);
   const router = useRouter();
   const getFromStorage = () => {
     let token = '';
@@ -166,6 +167,7 @@ const Nav = ({ auth }) => {
             href='#'
           >
             <CartIconNav />
+            {numberTotal.length !== 0 ? numberTotal.length : <></>}
           </Button>
         </div>
       </Navbar.Content>
