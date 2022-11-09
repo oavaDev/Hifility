@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^1.0.0-beta.10",
-    "@reduxjs/toolkit": "^1.9.0",
-    "next": "^12.3.1",
-    "next-redux-wrapper": "^8.0.0",
+    "@nextui-org/react": "1.0.0-beta.10",
+    "@reduxjs/toolkit": "1.9.0",
+    "next": "12.3.1",
+    "next-redux-wrapper": "8.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-jwt": "^1.1.7",
-    "react-redux": "^8.0.5"
+    "react-jwt": "1.1.7",
+    "react-redux": "8.0.5"
   },
   "devDependencies": {
     "eslint": "8.26.0",
