@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/components/SignUpContainer.module.css';
-import { Text, Input, Button, Link } from '@nextui-org/react';
+import { Text, Input, Button } from '@nextui-org/react';
 import Brand from './Brand';
 import { useRouter } from 'next/router';
 const SignUpContainer = () => {

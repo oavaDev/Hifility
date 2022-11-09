@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Brand from './Brand';
 import styles from '../styles/components/Nav.module.css';
-import CartIconNav from './CartIconNav';
+import CartIconNav from '../components/cartIconNav';
 import { useRouter } from 'next/router';
 import { Navbar, Text, Button, Dropdown, User, Link } from '@nextui-org/react';
 import { useSelector } from 'react-redux';
