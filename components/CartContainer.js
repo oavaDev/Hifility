@@ -149,7 +149,7 @@ const CartContainer = () => {
                   textGradient: '0deg,green 1%,grey',
                 }}
               >
-                TOTAL: {total}
+                TOTAL: {total.toFixed(2)}
               </Text>
             </td>
           </tr>

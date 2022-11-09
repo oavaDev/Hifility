@@ -48,7 +48,7 @@ const Nav = ({ auth }) => {
   const collapseItems = ['Products', 'Company', 'Signup', 'Login'];
 
   return (
-    <Navbar maxWidth={'fluid'} isBordered variant='sticky'>
+    <Navbar shouldHideOnScroll maxWidth={'fluid'} isBordered variant='sticky'>
       <Navbar.Brand>
         <Brand />
       </Navbar.Brand>
