@@ -153,6 +153,11 @@ const CartContainer = () => {
                 TOTAL: {total.toFixed(2)} USD
               </Text>
             </td>
+            <td className={styles.button_cont}>
+              <Button color='success' flat auto>
+                Buy Now
+              </Button>
+            </td>
           </tr>
         </table>
       ) : (
