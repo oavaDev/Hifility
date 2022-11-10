@@ -99,6 +99,7 @@ const CartContainer = () => {
                   </td>
                   <td>
                     <select
+                      className={styles.select}
                       value={item.quantity}
                       onChange={(e) => updateCartHandler(item, e.target.value)}
                     >
@@ -149,7 +150,7 @@ const CartContainer = () => {
                   textGradient: '0deg,green 1%,grey',
                 }}
               >
-                TOTAL: {total.toFixed(2)}
+                TOTAL: {total.toFixed(2)} USD
               </Text>
             </td>
           </tr>
