@@ -2,13 +2,21 @@ import Reactm, { useState } from 'react';
 import { Text, Input, Button } from '@nextui-org/react';
 import Brand from '../components/Brand';
 import { useRouter } from 'next/router';
+import { useJwt } from 'react-jwt';
+
 import styles from '../styles/components/FormContainer.module.css';
 const FormContainer = () => {
   const router = useRouter();
-  const [errorName, setErrorName] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorPass, setErrorPass] = useState(false);
-
+  const getFromStorage = () => {
+    let token = '';
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem('hifility');
+    }
+    return token;
+  };
+  const user = getFromStorage('hifility');
+  const { isExpired } = useJwt(user);
+  const isItExpired = isExpired;
   const [submitData, setSubmitData] = useState({
     fullName: '',
     adress: '',
@@ -20,35 +28,23 @@ const FormContainer = () => {
   });
 
   const handleSubmit = async (e) => {
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(submitData.email)) {
-      setErrorEmail(true);
-    } else {
-      setErrorEmail(false);
-    }
-    submitData.name.length <= 3 ? setErrorName(true) : setErrorName(false);
-    submitData.password.length < 8 ? setErrorPass(true) : setErrorPass(false);
-
-    if (errorEmail === false && errorName === false && errorPass === false) {
-      await fetch('https://hifility.herokuapp.com/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submitData),
+    await fetch('https://hifility.herokuapp.com/auth/user', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user}`,
+      },
+      body: JSON.stringify(submitData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
       })
-        .then((response) => response.json())
-        .then((data) => {
-          localStorage.setItem('hifility', data.data.token);
-          router.push('/');
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    } else {
-      localStorage.removeItem('hifility');
-    }
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
-
+  console.log(submitData);
   return (
     <div className={styles.Formcontainer__body}>
       <div className={styles.Formcontainer__body_brand}>
@@ -98,21 +94,6 @@ const FormContainer = () => {
                 }
               />
             </div>
-            {errorName ? (
-              <Text
-                h1
-                size={15}
-                css={{
-                  textAlign: 'center',
-                  textGradient: '45deg, grey, red',
-                }}
-                weight='light'
-              >
-                Type at least 4 characters
-              </Text>
-            ) : (
-              ''
-            )}
           </div>
           <div className={styles.Formcontainer__body_input_item}>
             <div>
@@ -127,21 +108,6 @@ const FormContainer = () => {
                 }
               />
             </div>
-            {errorEmail ? (
-              <Text
-                h1
-                size={15}
-                css={{
-                  textAlign: 'center',
-                  textGradient: '45deg, grey, red',
-                }}
-                weight='light'
-              >
-                Type a valid email
-              </Text>
-            ) : (
-              ''
-            )}
           </div>
           <div className={styles.Formcontainer__body_input_item}>
             <div>
@@ -156,21 +122,20 @@ const FormContainer = () => {
                 }
               />
             </div>
-            {errorPass ? (
-              <Text
-                h1
-                size={15}
-                css={{
-                  textAlign: 'center',
-                  textGradient: '45deg, grey, red',
-                }}
-                weight='light'
-              >
-                Type at least 8 characters
-              </Text>
-            ) : (
-              ''
-            )}
+          </div>
+          <div className={styles.Formcontainer__body_input_item}>
+            <div>
+              <Input
+                aria-label='zip'
+                underlined
+                value={submitData.zip}
+                labelLeft='ZIP'
+                placeholder='000000'
+                onChange={(e) =>
+                  setSubmitData({ ...submitData, zip: e.target.value })
+                }
+              />
+            </div>
           </div>
           <div className={styles.Formcontainer__body_input_item}>
             <div>
