@@ -46,6 +46,7 @@ const Nav = ({ auth }) => {
   };
 
   const collapseItems = ['Products', 'Company', 'Signup', 'Login'];
+  const linksto = ['products', 'company', 'signup', 'login'];
 
   return (
     <Navbar shouldHideOnScroll maxWidth={'fluid'} isBordered variant='sticky'>
@@ -131,7 +132,7 @@ const Nav = ({ auth }) => {
                   key='settings'
                   withDivider
                 >
-                  My Account
+                  <span onClick={() => router.push('/user')}>My Account</span>
                 </Dropdown.Item>
                 <Dropdown.Item textValue={'signed as'} key='team_settings'>
                   Track products
@@ -182,7 +183,13 @@ const Nav = ({ auth }) => {
       <Navbar.Toggle showIn={'xs'} aria-label='toggle navigation' />
       <Navbar.Collapse>
         {collapseItems.map((item, index) => (
-          <Navbar.CollapseItem key={item}>{item}</Navbar.CollapseItem>
+          <Navbar.CollapseItem
+            css={{ cursor: 'pointer' }}
+            onClick={() => router.push(`/${linksto[index]}`)}
+            key={item}
+          >
+            {item}
+          </Navbar.CollapseItem>
         ))}
       </Navbar.Collapse>
     </Navbar>

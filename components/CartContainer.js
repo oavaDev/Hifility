@@ -8,11 +8,15 @@ import { selectTotal } from '../store/slices/orderSlice';
 import { Text, Button } from '@nextui-org/react';
 import styles from '../styles/components/CartContainer.module.css';
 import NoItems from './NoItems';
+import { useRouter } from 'next/router';
 const CartContainer = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
-
+  const handleBuy = () => {
+    router.push('/form');
+  };
   const updateCartHandler = (item, qty) => {
     const quantity = Number(qty);
     dispatch(addToOrder({ ...item, quantity }));
@@ -29,8 +33,7 @@ const CartContainer = () => {
           <thead className={styles.Table__body_head}>
             <th>
               <Text
-                h1
-                size={30}
+                size={20}
                 weight={'bold'}
                 css={{
                   textAlign: 'center',
@@ -42,8 +45,7 @@ const CartContainer = () => {
             </th>
             <th>
               <Text
-                h1
-                size={30}
+                size={20}
                 weight={'bold'}
                 css={{
                   textAlign: 'center',
@@ -55,8 +57,7 @@ const CartContainer = () => {
             </th>
             <th>
               <Text
-                h1
-                size={30}
+                size={20}
                 weight={'bold'}
                 css={{
                   textAlign: 'center',
@@ -68,8 +69,7 @@ const CartContainer = () => {
             </th>
             <th>
               <Text
-                h1
-                size={30}
+                size={20}
                 weight={'bold'}
                 css={{
                   textAlign: 'center',
@@ -86,7 +86,6 @@ const CartContainer = () => {
                 <tr className={styles.items} key={item.id}>
                   <td>
                     <Text
-                      h1
                       size={20}
                       weight={'bold'}
                       css={{
@@ -112,7 +111,6 @@ const CartContainer = () => {
                   </td>
                   <td>
                     <Text
-                      h1
                       size={20}
                       weight={'light'}
                       css={{
@@ -154,7 +152,7 @@ const CartContainer = () => {
               </Text>
             </td>
             <td className={styles.button_cont}>
-              <Button color='success' flat auto>
+              <Button color='success' onClick={handleBuy} flat auto>
                 Buy Now
               </Button>
             </td>

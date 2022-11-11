@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 
 const Form = () => {
   return (
-    <Layout footer={false}>
+    <Layout footer>
       <FormContainer />
     </Layout>
   );
