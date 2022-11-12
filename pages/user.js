@@ -1,7 +1,15 @@
 import React from 'react';
+import Layout from '../components/Layout';
+import UserContainer from '../components/UserContainer';
 
 const User = () => {
-  return <div>User</div>;
+  return (
+    <>
+      <Layout title='User ' footer={false}>
+        <UserContainer />
+      </Layout>
+    </>
+  );
 };
 
 export default User;

@@ -24,7 +24,7 @@ const Nav = ({ auth }) => {
   useEffect(() => {
     if (!isItExpired) {
       fetch('https://hifility.herokuapp.com/auth/user', {
-        method: 'GET', // or 'PUT'
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user}`,
@@ -46,6 +46,7 @@ const Nav = ({ auth }) => {
   };
 
   const collapseItems = ['Products', 'Company', 'Signup', 'Login'];
+  const linksto = ['products', 'company', 'signup', 'login'];
 
   return (
     <Navbar shouldHideOnScroll maxWidth={'fluid'} isBordered variant='sticky'>
@@ -109,7 +110,7 @@ const Nav = ({ auth }) => {
                   bordered
                   as='button'
                   size='lg'
-                  name={data ? `${data.name}` : 'undefined'}
+                  name={data ? `${data.fullName}` : 'undefined'}
                   src=''
                 />
               </Dropdown.Trigger>
@@ -131,7 +132,7 @@ const Nav = ({ auth }) => {
                   key='settings'
                   withDivider
                 >
-                  My Account
+                  <span onClick={() => router.push('/user')}>My Account</span>
                 </Dropdown.Item>
                 <Dropdown.Item textValue={'signed as'} key='team_settings'>
                   Track products
@@ -182,7 +183,13 @@ const Nav = ({ auth }) => {
       <Navbar.Toggle showIn={'xs'} aria-label='toggle navigation' />
       <Navbar.Collapse>
         {collapseItems.map((item, index) => (
-          <Navbar.CollapseItem key={item}>{item}</Navbar.CollapseItem>
+          <Navbar.CollapseItem
+            css={{ cursor: 'pointer' }}
+            onClick={() => router.push(`/${linksto[index]}`)}
+            key={item}
+          >
+            {item}
+          </Navbar.CollapseItem>
         ))}
       </Navbar.Collapse>
     </Navbar>
