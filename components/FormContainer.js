@@ -20,7 +20,6 @@ const FormContainer = () => {
   const isItExpired = isExpired;
 
   const [submitData, setSubmitData] = useState({
-    fullName: '',
     adress: '',
     city: '',
     state_province_region: '',
@@ -88,23 +87,6 @@ const FormContainer = () => {
             </div>
             <form>
               <div className={styles.Formcontainer__body_input}>
-                <div className={styles.Formcontainer__body_input_item}>
-                  <div>
-                    <Input
-                      aria-label='name'
-                      underlined
-                      value={submitData.fullName}
-                      labelLeft='Full name'
-                      placeholder='Jhon Doe'
-                      onChange={(e) =>
-                        setSubmitData({
-                          ...submitData,
-                          fullName: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
                 <div className={styles.Formcontainer__body_input_item}>
                   <div>
                     <Input

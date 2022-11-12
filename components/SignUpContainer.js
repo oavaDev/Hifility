@@ -11,7 +11,7 @@ const SignUpContainer = () => {
   const [submitData, setSubmitData] = useState({
     email: '',
     password: '',
-    name: '',
+    fullName: '',
   });
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const SignUpContainer = () => {
     } else {
       setErrorEmail(false);
     }
-    submitData.name.length <= 3 ? setErrorName(true) : setErrorName(false);
+    submitData.fullName.length <= 3 ? setErrorName(true) : setErrorName(false);
     submitData.password.length < 8 ? setErrorPass(true) : setErrorPass(false);
 
     if (errorEmail === false && errorName === false && errorPass === false) {
@@ -81,13 +81,13 @@ const SignUpContainer = () => {
           <div className={styles.Registercontainer__body_input_item}>
             <div>
               <Input
-                aria-label='name'
+                aria-label='fullName'
                 underlined
-                value={submitData.name}
-                labelLeft='Name'
+                value={submitData.fullName}
+                labelLeft='Full name'
                 placeholder='Jhon Doe'
                 onChange={(e) =>
-                  setSubmitData({ ...submitData, name: e.target.value })
+                  setSubmitData({ ...submitData, fullName: e.target.value })
                 }
               />
             </div>

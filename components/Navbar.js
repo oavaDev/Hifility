@@ -24,7 +24,7 @@ const Nav = ({ auth }) => {
   useEffect(() => {
     if (!isItExpired) {
       fetch('https://hifility.herokuapp.com/auth/user', {
-        method: 'GET', // or 'PUT'
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user}`,
@@ -110,7 +110,7 @@ const Nav = ({ auth }) => {
                   bordered
                   as='button'
                   size='lg'
-                  name={data ? `${data.name}` : 'undefined'}
+                  name={data ? `${data.fullName}` : 'undefined'}
                   src=''
                 />
               </Dropdown.Trigger>
