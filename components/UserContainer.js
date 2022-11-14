@@ -80,7 +80,7 @@ const UserContainer = () => {
   const handleSubmit = async (e) => {
     console.log(submitData.profilePhoto);
 
-    await fetch('http://hifility.herokuapp.com/auth/user', {
+    await fetch('https://hifility.herokuapp.com/auth/user', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
