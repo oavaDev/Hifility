@@ -111,7 +111,7 @@ const Nav = ({ auth }) => {
                   as='button'
                   size='lg'
                   name={data ? `${data.fullName}` : 'undefined'}
-                  src=''
+                  src={`${data ? `${data.profilePhoto}` : 'undefined'} `}
                 />
               </Dropdown.Trigger>
               <Dropdown.Menu color='primary' aria-label='User Actions'>

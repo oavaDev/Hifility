@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/components/UserContainer.module.css';
-import { Text, Input, Button } from '@nextui-org/react';
+import { Text, Input, Button, Avatar } from '@nextui-org/react';
 import Brand from '../components/Brand';
 import { useRouter } from 'next/router';
 import { useJwt } from 'react-jwt';
@@ -14,14 +14,41 @@ const UserContainer = () => {
     }
     return token;
   };
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState();
   const user = getFromStorage('hifility');
   const { isExpired } = useJwt(user);
-  const isItExpired = isExpired;
   const [data, setData] = useState();
   const [submitData, setSubmitData] = useState({});
+
+  const imageHandler = async (e) => {
+    const formData = new FormData();
+    for (let i = 0; i < file.length; i++) {
+      formData.append(`file`, file[i], file[i].name);
+    }
+    formData.append('upload_preset', 'hifility-preset');
+    await fetch('https://api.cloudinary.com/v1_1/dj80e8qqp/auto/upload', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setImageUrl(data.secure_url);
+        setSubmitData({
+          ...submitData,
+          profilePhoto: data.secure_url,
+        });
+        setImage(data.secure_url);
+      });
+  };
+
+  const handleChange = (event) => {
+    setFile(event.target.files);
+  };
   const retrieveData = async (e) => {
     await fetch('https://hifility.herokuapp.com/auth/user', {
-      method: 'GET', // or 'PUT'
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${user}`,
@@ -39,6 +66,7 @@ const UserContainer = () => {
           zip: data.data.zip,
           country: data.data.country,
           phoneNumber: data.data.phoneNumber,
+          profilePhoto: data.data.profilePhoto,
         });
       })
       .catch((error) => {
@@ -50,7 +78,8 @@ const UserContainer = () => {
     retrieveData();
   }, []);
   const handleSubmit = async (e) => {
-    await fetch('https://hifility.herokuapp.com/auth/user', {
+    console.log(submitData.profilePhoto);
+    await fetch('http://localhost:8080/auth/user', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -89,6 +118,25 @@ const UserContainer = () => {
       </div>
       <form>
         <div className={styles.Usercontainer__body_input}>
+          <div className={styles.Usercontainer__body_input_item}>
+            <Avatar squared src={image} />
+          </div>
+          <label htmlFor='profile-photo'>Selecciona tu foto</label>
+          <input
+            type='file'
+            accept='image/*'
+            name='profile-foto'
+            id='profile-photo'
+            onChange={handleChange}
+          />
+          {file !== null ? (
+            <button type='button' onClick={imageHandler}>
+              Cambiar
+            </button>
+          ) : (
+            <></>
+          )}
+
           <div className={styles.Usercontainer__body_input_item}>
             <div>
               <Input

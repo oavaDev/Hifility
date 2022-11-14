@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-
 import { selectItems } from '../store/slices/orderSlice';
 import { addToOrder, removeFromOrder } from '../store/slices/orderSlice';
 import { selectTotal } from '../store/slices/orderSlice';
@@ -9,13 +8,105 @@ import { Text, Button } from '@nextui-org/react';
 import styles from '../styles/components/CartContainer.module.css';
 import NoItems from './NoItems';
 import { useRouter } from 'next/router';
+import { useJwt } from 'react-jwt';
 const CartContainer = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
+  const getFromStorage = () => {
+    let token = '';
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem('hifility');
+    }
+    return token;
+  };
+  const user = getFromStorage('hifility');
+  const { isExpired } = useJwt(user);
+  const isItExpired = isExpired;
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  const [epayco, setEpayco] = useState();
+  let nameOfProducts = '';
+  items.cartItems.map((x) => {
+    nameOfProducts += x.name;
+  });
+
+  useEffect(() => {
+    if (!isItExpired) {
+      fetch('https://hifility.herokuapp.com/auth/user', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data.data);
+          console.log(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  }, [isItExpired, user]);
+
+  const handler = () => {
+    if (typeof window !== 'undefined') {
+      return window.ePayco.checkout.configure({
+        key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
+        test: true,
+      });
+    }
+  };
+
   const handleBuy = () => {
-    router.push('/form');
+    handler().open({
+      //Parametros compra (obligatorio)
+      name: `${nameOfProducts}`,
+      description: 'Great option',
+      invoice: 'asdcj9823uadv34t',
+      currency: 'usd',
+      amount: `${total}`,
+      tax_base: '0',
+      tax: '0',
+      country: 'co',
+      lang: 'en',
+
+      //Onpage="false" - Standard="true"
+      external: 'false',
+
+      //Atributos opcionales
+      extra1: 'extra1',
+      extra2: 'extra2',
+      extra3: 'extra3',
+      response: 'http://localhost:3000/response',
+
+      //Atributos cliente
+      name_billing: `${data.fullName}`,
+      address_billing: `${data.adress}`,
+      type_doc_billing: 'cc',
+      mobilephone_billing: `${data.phoneNumber}`,
+      number_doc_billing: '1234567896',
+
+      //atributo deshabilitación metodo de pago
+      methodsDisable: ['SP'],
+    });
+  };
+  console.log(data);
+  const handleBuyButton = () => {
+    if (data !== undefined) {
+      if (data.adress !== undefined) {
+        handleBuy();
+      } else {
+        router.push('/form');
+      }
+    } else {
+      console.log('hola');
+      router.push('/form');
+    }
   };
   const updateCartHandler = (item, qty) => {
     const quantity = Number(qty);
@@ -152,9 +243,13 @@ const CartContainer = () => {
               </Text>
             </td>
             <td className={styles.button_cont}>
-              <Button color='success' onClick={handleBuy} flat auto>
-                Buy Now
-              </Button>
+              {!loading ? (
+                <Button color='success' onClick={handleBuyButton} flat auto>
+                  Buy Now
+                </Button>
+              ) : (
+                <></>
+              )}
             </td>
           </tr>
         </table>

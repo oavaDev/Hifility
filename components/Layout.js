@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Nav from './Navbar';
 import Footer from './Footer';
 import styles from '../styles/Home.module.css';
-
+import Script from 'next/script';
 const Layout = ({ footer, title, children }) => {
   return (
     <>
@@ -12,11 +12,15 @@ const Layout = ({ footer, title, children }) => {
         <meta name='description' content='Ecommerce Website' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className={styles.container}>
-        <Nav />
-        <main>{children}</main>
-        {footer ? <Footer /> : <></>}
-      </div>
+
+      <main>
+        <div className={styles.container}>
+          <Nav />
+          <main>{children}</main>
+          {footer ? <Footer /> : <></>}
+        </div>
+      </main>
+      <Script src='https://checkout.epayco.co/checkout.js' />
     </>
   );
 };
