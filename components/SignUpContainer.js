@@ -12,6 +12,8 @@ const SignUpContainer = () => {
     email: '',
     password: '',
     fullName: '',
+    profilePhoto:
+      'https://media.istockphoto.com/vectors/user-vector-id1138452882?k=6&m=1138452882&s=170667a&w=0&h=H31QWhznYhdGblAJX6Pp6RHcS6d6xF13D5L6wNJOQmc=',
   });
 
   const handleSubmit = async (e) => {
