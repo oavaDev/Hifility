@@ -73,13 +73,10 @@ const UserContainer = () => {
         console.error('Error:', error);
       });
   };
-  console.log(data);
   useEffect(() => {
     retrieveData();
   }, []);
   const handleSubmit = async (e) => {
-    console.log(submitData.profilePhoto);
-
     await fetch('https://hifility.herokuapp.com/auth/user', {
       method: 'PUT',
       headers: {
@@ -89,9 +86,7 @@ const UserContainer = () => {
       body: JSON.stringify(submitData),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.error('Error:', error);
       });

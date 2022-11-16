@@ -39,7 +39,7 @@ const FormContainer = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        router.push('/payment');
       })
       .catch((error) => {
         console.error('Error:', error);

@@ -26,10 +26,11 @@ const CartContainer = () => {
   const isItExpired = isExpired;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
-  const [epayco, setEpayco] = useState();
   let nameOfProducts = '';
+  let idOfProducts = [];
   items.cartItems.map((x) => {
     nameOfProducts += x.name;
+    idOfProducts.push(x.id);
   });
 
   useEffect(() => {
@@ -44,7 +45,6 @@ const CartContainer = () => {
         .then((response) => response.json())
         .then((data) => {
           setData(data.data);
-          console.log(data);
           setLoading(false);
         })
         .catch((error) => {
@@ -53,60 +53,45 @@ const CartContainer = () => {
     }
   }, [isItExpired, user]);
 
-  const handler = () => {
-    if (typeof window !== 'undefined') {
-      return window.ePayco.checkout.configure({
-        key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
-        test: true,
-      });
-    }
-  };
-
-  const handleBuy = () => {
-    handler().open({
-      //Parametros compra (obligatorio)
-      name: `${nameOfProducts}`,
-      description: 'Great option',
-      invoice: 'asdcj9823uadv34t',
-      currency: 'usd',
-      amount: `${total}`,
-      tax_base: '0',
-      tax: '0',
-      country: 'co',
-      lang: 'en',
-
-      //Onpage="false" - Standard="true"
-      external: 'false',
-
-      //Atributos opcionales
-      extra1: 'extra1',
-      extra2: 'extra2',
-      extra3: 'extra3',
-      response: 'http://localhost:3000/response',
-
-      //Atributos cliente
-      name_billing: `${data.fullName}`,
-      address_billing: `${data.adress}`,
-      type_doc_billing: 'cc',
-      mobilephone_billing: `${data.phoneNumber}`,
-      number_doc_billing: '1234567896',
-
-      //atributo deshabilitación metodo de pago
-      methodsDisable: ['SP'],
-    });
-  };
-  console.log(data);
   const handleBuyButton = () => {
     if (data !== undefined) {
-      if (data.adress !== undefined) {
-        handleBuy();
+      if (data.adress !== '') {
+        router.push('/payment');
       } else {
         router.push('/form');
       }
     } else {
-      console.log('hola');
       router.push('/form');
     }
+  };
+
+  const handleBuy = () => {
+    let ids = [];
+    items.cartItems.map((x) => {
+      ids.push(x.id);
+    });
+    ids.forEach((x) => {
+      fetch(`https://hifility.herokuapp.com/product/${x}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          deleteAll();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
+  };
+  const deleteAll = () => {
+    items.cartItems.map((item) => {
+      const id = item.id;
+      dispatch(removeFromOrder({ ...item, id }));
+    });
   };
   const updateCartHandler = (item, qty) => {
     const quantity = Number(qty);

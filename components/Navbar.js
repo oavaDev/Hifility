@@ -135,7 +135,9 @@ const Nav = ({ auth }) => {
                   <span onClick={() => router.push('/user')}>My Account</span>
                 </Dropdown.Item>
                 <Dropdown.Item textValue={'signed as'} key='team_settings'>
-                  Track products
+                  <span onClick={() => router.push('/track')}>
+                    Track products
+                  </span>
                 </Dropdown.Item>
 
                 <Dropdown.Item
