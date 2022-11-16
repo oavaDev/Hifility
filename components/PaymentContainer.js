@@ -34,13 +34,12 @@ const PaymentContainer = () => {
         },
       })
         .then((response) => response.json())
-        .then((data) => {
-          deleteAll();
-        })
+        .then((data) => {})
         .catch((error) => {
           console.error('Error:', error);
         });
     });
+    deleteAll();
     router.push('/track');
   };
 

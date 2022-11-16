@@ -55,7 +55,7 @@ const CartContainer = () => {
 
   const handleBuyButton = () => {
     if (data !== undefined) {
-      if (data.adress !== '') {
+      if (data.adress !== undefined) {
         router.push('/payment');
       } else {
         router.push('/form');
