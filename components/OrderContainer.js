@@ -96,36 +96,34 @@ const OrderContainer = () => {
         {data ? (
           data.products.map((item, index) => {
             return (
-              <>
-                <Grid key={index} xs={4}>
-                  <Card isHoverable variant='bordered'>
-                    <Card.Header
-                      css={{ position: 'absolute', zIndex: 1, top: 5 }}
-                    >
-                      <Col>
-                        <Text
-                          size={12}
-                          weight='bold'
-                          transform='uppercase'
-                          color='black'
-                        >
-                          {item.brand}
-                        </Text>
-                        <Text h4 color='black'>
-                          {item.name}
-                        </Text>
-                      </Col>
-                    </Card.Header>
-                    <Card.Image
-                      src={`${item.image}`}
-                      objectFit='cover'
-                      width='70%'
-                      height={340}
-                      alt='Card image background'
-                    />
-                  </Card>
-                </Grid>
-              </>
+              <Grid key={index} xs={4}>
+                <Card isHoverable variant='bordered'>
+                  <Card.Header
+                    css={{ position: 'absolute', zIndex: 1, top: 5 }}
+                  >
+                    <Col>
+                      <Text
+                        size={12}
+                        weight='bold'
+                        transform='uppercase'
+                        color='black'
+                      >
+                        {item.brand}
+                      </Text>
+                      <Text h4 color='black'>
+                        {item.name}
+                      </Text>
+                    </Col>
+                  </Card.Header>
+                  <Card.Image
+                    src={`${item.image}`}
+                    objectFit='cover'
+                    width='70%'
+                    height={340}
+                    alt='Card image background'
+                  />
+                </Card>
+              </Grid>
             );
           })
         ) : (

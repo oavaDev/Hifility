@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Input, Button } from '@nextui-org/react';
+import { Text, Input, Button, Loading } from '@nextui-org/react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { selectItems } from '../store/slices/orderSlice';
@@ -11,6 +11,7 @@ const PaymentContainer = () => {
   const router = useRouter();
   const items = useSelector(selectItems);
   const dispatch = useDispatch();
+  const [load, setLoad] = useState(0);
   const getFromStorage = () => {
     let token = '';
     if (typeof window !== 'undefined') {
@@ -19,30 +20,33 @@ const PaymentContainer = () => {
     return token;
   };
   const user = getFromStorage('hifility');
-
   const handleBuy = () => {
     let ids = [];
     items.cartItems.map((x) => {
       ids.push(x.id);
     });
-    ids.forEach((x) => {
-      fetch(`https://hifility.herokuapp.com/product/${x}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {})
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    });
-    deleteAll();
+    console.log(ids);
+    setTimeout(() => {
+      ids.forEach((x) => {
+        fetch(`https://hifility.herokuapp.com/product/${x}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            deleteAll();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    }, 2000);
+
     router.push('/track');
   };
-
   const deleteAll = () => {
     items.cartItems.map((item) => {
       const id = item.id;
@@ -198,6 +202,17 @@ const PaymentContainer = () => {
               >
                 Continue
               </Button>
+              <Text
+                h1
+                size={20}
+                css={{
+                  textAlign: 'center',
+                  textGradient: '45deg, grey, black',
+                }}
+                weight='light'
+              >
+                Once done, you will be redirected to the tracking page
+              </Text>
             </div>
           </div>
         </form>
