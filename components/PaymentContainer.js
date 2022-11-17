@@ -25,7 +25,6 @@ const PaymentContainer = () => {
     items.cartItems.map((x) => {
       ids.push(x.id);
     });
-    console.log(ids);
     setTimeout(() => {
       ids.forEach((x) => {
         fetch(`https://hifility.herokuapp.com/product/${x}`, {
