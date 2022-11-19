@@ -20,32 +20,7 @@ const PaymentContainer = () => {
     return token;
   };
   const user = getFromStorage('hifility');
-  const handleBuy = () => {
-    let ids = [];
-    items.cartItems.map((x) => {
-      ids.push(x.id);
-    });
-    setTimeout(() => {
-      ids.forEach((x) => {
-        fetch(`https://hifility.onrender.com/product/${x}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            deleteAll();
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      });
-    }, 2000);
 
-    router.push('/track');
-  };
   const deleteAll = () => {
     items.cartItems.map((item) => {
       const id = item.id;
@@ -54,16 +29,59 @@ const PaymentContainer = () => {
   };
 
   const [active, setActive] = useState(false);
+
   const [submitData, setSubmitData] = useState({
     cardNumber: '',
     dateExpire: '',
     cardHolder: '',
+    cv: '',
   });
-
+  const [error, setError] = useState();
+  const canContinue = () => {
+    if (
+      submitData.cardNumber.length > 0 &&
+      submitData.dateExpire.length > 0 &&
+      submitData.cardHolder.length > 0 &&
+      submitData.cv.length > 0
+    ) {
+      setError(false);
+      return true;
+    } else {
+      setError(true);
+      return false;
+    }
+  };
   const cardHandler = () => {
     active ? setActive(false) : setActive(true);
   };
 
+  const handleBuy = () => {
+    let ids = [];
+    items.cartItems.map((x) => {
+      ids.push(x.id);
+    });
+    if (canContinue()) {
+      setTimeout(() => {
+        ids.forEach((x) => {
+          fetch(`https://hifility.onrender.com/product/${x}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${user}`,
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              deleteAll();
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+      }, 2000);
+      router.push('/track');
+    }
+  };
   return (
     <>
       <div className={styles.card}>
@@ -193,6 +211,21 @@ const PaymentContainer = () => {
                 }
               />
             </div>
+            {error ? (
+              <Text
+                h1
+                size={15}
+                css={{
+                  textAlign: 'center',
+                  textGradient: '45deg, grey, red',
+                }}
+                weight='light'
+              >
+                Fields needs to be filled
+              </Text>
+            ) : (
+              ''
+            )}
             <div>
               <Button
                 onClick={handleBuy}

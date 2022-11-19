@@ -27,25 +27,43 @@ const FormContainer = () => {
     country: '',
     phoneNumber: '',
   });
-
-  const handleSubmit = async (e) => {
-    await fetch('https://hifility.onrender.com/auth/user', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user}`,
-      },
-      body: JSON.stringify(submitData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        router.push('/payment');
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+  const [error, setError] = useState();
+  const canContinue = () => {
+    if (
+      submitData.adress.length > 0 &&
+      submitData.city.length > 0 &&
+      submitData.state_province_region.length > 0 &&
+      submitData.zip.length > 0 &&
+      submitData.phoneNumber.length > 0 &&
+      submitData.country.length > 0
+    ) {
+      setError(false);
+      return true;
+    } else {
+      setError(true);
+      return false;
+    }
   };
 
+  const handleSubmit = async (e) => {
+    if (canContinue()) {
+      await fetch('https://hifility.onrender.com/auth/user', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user}`,
+        },
+        body: JSON.stringify(submitData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          router.push('/payment');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  };
   return (
     <>
       {isItExpired ? (
@@ -180,6 +198,21 @@ const FormContainer = () => {
                       }
                     />
                   </div>
+                  {error ? (
+                    <Text
+                      h1
+                      size={15}
+                      css={{
+                        textAlign: 'center',
+                        textGradient: '45deg, grey, red',
+                      }}
+                      weight='light'
+                    >
+                      Fields needs to be filled
+                    </Text>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </div>
 
