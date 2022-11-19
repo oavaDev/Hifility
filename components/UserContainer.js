@@ -47,7 +47,7 @@ const UserContainer = () => {
     setFile(event.target.files);
   };
   const retrieveData = async (e) => {
-    await fetch('https://hifility.herokuapp.com/auth/user', {
+    await fetch('https://hifility.onrender.com/auth/user', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const UserContainer = () => {
     retrieveData();
   }, []);
   const handleSubmit = async (e) => {
-    await fetch('https://hifility.herokuapp.com/auth/user', {
+    await fetch('https://hifility.onrender.com/auth/user', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

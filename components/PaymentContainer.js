@@ -27,7 +27,7 @@ const PaymentContainer = () => {
     });
     setTimeout(() => {
       ids.forEach((x) => {
-        fetch(`https://hifility.herokuapp.com/product/${x}`, {
+        fetch(`https://hifility.onrender.com/product/${x}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

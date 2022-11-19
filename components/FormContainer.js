@@ -29,7 +29,7 @@ const FormContainer = () => {
   });
 
   const handleSubmit = async (e) => {
-    await fetch('https://hifility.herokuapp.com/auth/user', {
+    await fetch('https://hifility.onrender.com/auth/user', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

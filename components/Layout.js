@@ -20,7 +20,6 @@ const Layout = ({ footer, title, children }) => {
           {footer ? <Footer /> : <></>}
         </div>
       </main>
-      <Script src='https://checkout.epayco.co/checkout.js' />
     </>
   );
 };

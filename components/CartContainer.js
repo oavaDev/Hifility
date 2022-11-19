@@ -35,7 +35,7 @@ const CartContainer = () => {
 
   useEffect(() => {
     if (!isItExpired) {
-      fetch('https://hifility.herokuapp.com/auth/user', {
+      fetch('https://hifility.onrender.com/auth/user', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const CartContainer = () => {
       ids.push(x.id);
     });
     ids.forEach((x) => {
-      fetch(`https://hifility.herokuapp.com/product/${x}`, {
+      fetch(`https://hifility.onrender.com/product/${x}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
