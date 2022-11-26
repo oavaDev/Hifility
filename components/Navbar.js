@@ -165,23 +165,22 @@ const Nav = ({ auth }) => {
             </Dropdown>
           </>
         )}
-
-        <div className={styles.cart_button}>
-          <Button
-            className={styles.cart_button_button}
-            flat
-            auto
-            onPress={() => router.push('/cart')}
-          >
-            <CartIconNav />
-            {numberTotal.cartItems.length !== 0 ? (
-              numberTotal.cartItems.length
-            ) : (
-              <></>
-            )}
-          </Button>
-        </div>
       </Navbar.Content>
+      <div className={styles.cart_button}>
+        <Button
+          className={styles.cart_button_button}
+          flat
+          auto
+          onPress={() => router.push('/cart')}
+        >
+          <CartIconNav />
+          {numberTotal.cartItems.length !== 0 ? (
+            numberTotal.cartItems.length
+          ) : (
+            <></>
+          )}
+        </Button>
+      </div>
       <Navbar.Toggle showIn={'xs'} aria-label='toggle navigation' />
       <Navbar.Collapse>
         {collapseItems.map((item, index) => (
