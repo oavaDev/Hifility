@@ -99,12 +99,9 @@ export default function Home({ productData }) {
   );
 }
 export async function getServerSideProps() {
-  const productApi = await fetch(
-    `https://hifility.herokuapp.com/product/show`,
-    {
-      method: 'GET',
-    }
-  );
+  const productApi = await fetch(`https://hifility.onrender.com/product/show`, {
+    method: 'GET',
+  });
   const productData = await productApi.json();
   return {
     props: {
