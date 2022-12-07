@@ -183,6 +183,59 @@ const Nav = ({ auth }) => {
       </div>
       <Navbar.Toggle showIn={'xs'} aria-label='toggle navigation' />
       <Navbar.Collapse>
+        <Dropdown placement='bottom-left'>
+          <Dropdown.Trigger>
+            <User
+              bordered
+              as='button'
+              size='lg'
+              name={data ? `${data.fullName}` : 'undefined'}
+              src={`${data ? `${data.profilePhoto}` : 'undefined'} `}
+            />
+          </Dropdown.Trigger>
+          <Dropdown.Menu color='primary' aria-label='User Actions'>
+            <Dropdown.Item
+              textValue={'signed as'}
+              key='profile'
+              css={{ height: '$18' }}
+            >
+              <Text b color='inherit' css={{ d: 'flex' }}>
+                Signed in as
+              </Text>
+              <Text b color='inherit' css={{ d: 'flex' }}>
+                {data ? data.email : 'undefined'}
+              </Text>
+            </Dropdown.Item>
+            <Dropdown.Item textValue={'signed as'} key='settings' withDivider>
+              <span onClick={() => router.push('/user')}>My Account</span>
+            </Dropdown.Item>
+            <Dropdown.Item textValue={'signed as'} key='team_settings'>
+              <span onClick={() => router.push('/track')}>Track products</span>
+            </Dropdown.Item>
+
+            <Dropdown.Item
+              textValue={'signed as'}
+              key='logout'
+              color='error'
+              withDivider
+            >
+              <Link onPress={handleSignOut} href='/'>
+                <button
+                  style={{
+                    border: 'none',
+                    background: 'none',
+                    cursor: 'pointer',
+                    margin: '0',
+                    padding: '0',
+                  }}
+                  onPress={handleSignOut}
+                >
+                  Log Out
+                </button>
+              </Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         {collapseItems.map((item, index) => (
           <Navbar.CollapseItem
             css={{ cursor: 'pointer' }}
