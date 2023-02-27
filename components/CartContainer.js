@@ -35,7 +35,7 @@ const CartContainer = () => {
 
   useEffect(() => {
     if (!isItExpired) {
-      fetch('https://hifility.onrender.com/auth/user', {
+      fetch('https://hifilityback-production.up.railway.app/auth/user', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const CartContainer = () => {
       ids.push(x.id);
     });
     ids.forEach((x) => {
-      fetch(`https://hifility.onrender.com/product/${x}`, {
+      fetch(`https://hifilityback-production.up.railway.app/product/${x}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

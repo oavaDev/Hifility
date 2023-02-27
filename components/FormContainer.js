@@ -47,7 +47,7 @@ const FormContainer = () => {
 
   const handleSubmit = async (e) => {
     if (canContinue()) {
-      await fetch('https://hifility.onrender.com/auth/user', {
+      await fetch('https://hifilityback-production.up.railway.app/auth/user', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

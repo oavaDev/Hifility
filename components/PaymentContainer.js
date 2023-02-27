@@ -63,7 +63,7 @@ const PaymentContainer = () => {
     if (canContinue()) {
       setTimeout(() => {
         ids.forEach((x) => {
-          fetch(`https://hifility.onrender.com/product/${x}`, {
+          fetch(`https://hifilityback-production.up.railway.app/product/${x}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

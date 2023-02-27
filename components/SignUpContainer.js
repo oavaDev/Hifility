@@ -26,13 +26,16 @@ const SignUpContainer = () => {
     submitData.password.length < 8 ? setErrorPass(true) : setErrorPass(false);
 
     if (errorEmail === false && errorName === false && errorPass === false) {
-      await fetch('https://hifility.onrender.com/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submitData),
-      })
+      await fetch(
+        'https://hifilityback-production.up.railway.app/auth/signup',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(submitData),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           localStorage.setItem('hifility', data.data.token);
