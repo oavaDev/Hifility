@@ -28,6 +28,24 @@ const PaymentContainer = () => {
     });
   };
 
+  async function makeOrder(ids) {
+    for (let i = 0; i < ids.length; i++) {
+      await fetch(
+        `https://hifilityback-production.up.railway.app/product/${ids[i]}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          deleteAll();
+        });
+    }
+  }
   const [active, setActive] = useState(false);
 
   const [submitData, setSubmitData] = useState({
@@ -62,22 +80,7 @@ const PaymentContainer = () => {
     });
     if (canContinue()) {
       setTimeout(() => {
-        ids.forEach((x) => {
-          fetch(`https://hifilityback-production.up.railway.app/product/${x}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${user}`,
-            },
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              deleteAll();
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-        });
+        makeOrder(ids);
       }, 2000);
       router.push('/track');
     }
